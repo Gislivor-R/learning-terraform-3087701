@@ -1,24 +1,23 @@
-data "aws_ami" "app_ami" {
-  most_recent = true
+resource "google_compute_instance" "web" {
+  name         = "hello-world"
+  machine_type = "e2-micro"
+  zone         = var.zone
 
-  filter {
-    name   = "name"
-    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
+  boot_disk {
+    initialize_params {
+      image = "bitnami-tomcat"
+    }
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+  network_interface {
+    network       = "default"
+    access_config {} # Esto asigna una IP pública
   }
 
-  owners = ["979382823631"] # Bitnami
-}
+  tags = ["http-server"]
 
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.app_ami.id
-  instance_type = "t3.nano"
-
-  tags = {
+  metadata = {
     Name = "HelloWorld"
   }
 }
+
