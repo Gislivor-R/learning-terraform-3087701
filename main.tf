@@ -5,7 +5,7 @@ resource "google_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image = "bitnami-tomcat"
+      image = "debian-cloud/debian-12"
     }
   }
 
