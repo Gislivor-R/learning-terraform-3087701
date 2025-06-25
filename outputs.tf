@@ -1,7 +1,8 @@
-#output "instance_ami" {
-#  value = aws_instance.web.ami
+#output "instance_name" {
+#  value = google_compute_instance.web.name
+#}
+#
+#output "instance_zone" {
+#  value = google_compute_instance.web.zone
 #}
 
-#output "instance_arn" {
-#  value = aws_instance.web.arn
-#}
